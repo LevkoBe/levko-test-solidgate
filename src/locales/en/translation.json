@@ -1,0 +1,6 @@
+{
+  "pay": "Pay",
+  "loading": "Processing...",
+  "success": "Payment Successful!",
+  "fail": "Payment Failed."
+}
