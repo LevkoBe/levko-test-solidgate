@@ -1,7 +1,98 @@
+:root {
+  --primary-hue: 144;
+  --primary-saturation: 97%;
+  --primary-lightness: 27%;
+  --primary-color: hsl(
+    var(--primary-hue),
+    var(--primary-saturation),
+    var(--primary-lightness)
+  );
+}
+
+* {
+  font-family: Inter;
+}
+
+/* button */
 .button {
-  display: flex;
-  height: 4rem;
-  justify-content: center;
-  align-items: center;
+  height: 3rem;
+  padding: 1rem;
+  border-width: 0;
   align-self: stretch;
+  border-radius: 6px;
+  background: var(--primary-color, hsl(144, 97%, 27%));
+  transition: all 80ms ease-in;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 1;
+}
+.button:hover {
+  transform: translateY(-2px);
+  background-color: hsl(
+    var(--primary-hue),
+    var(--primary-saturation),
+    calc(var(--primary-lightness) + 4%)
+  );
+}
+.button:active {
+  transform: translateY(4px);
+  background-color: hsl(
+    var(--primary-hue),
+    var(--primary-saturation),
+    calc(var(--primary-lightness) - 8%)
+  );
+}
+/* tablet or mobile */
+@media (max-width: 999px) {
+  .button:active {
+    transform: translateY(6px);
+  }
+}
+
+/* text */
+.processingText,
+.mainText {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 12px;
+  align-items: center;
+  height: 1rem;
+  transition: all 120ms ease-out;
+}
+.button.processing .processingText,
+.button:not(.processing) .mainText {
+  opacity: 1;
+}
+.button:not(.processing) .processingText,
+.button.processing .mainText {
+  opacity: 0;
+}
+.button:not(.processing) .processingText,
+.button:not(.processing) .mainText {
+  transform: translateY(0);
+}
+.button.processing .processingText,
+.button.processing .mainText {
+  transform: translateY(-1rem);
+}
+
+.transparent {
+  opacity: 0;
+}
+
+/* spinner */
+.spinner {
+  width: 18px;
+  height: 18px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

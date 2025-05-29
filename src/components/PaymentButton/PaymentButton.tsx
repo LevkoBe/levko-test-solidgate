@@ -1,19 +1,31 @@
 import styles from "./styles.module.css";
 import React from "react";
+import LoaderUrl from "../../assets/Loader.svg";
 
-interface PaymentButtonProps {
+type PaymentButtonProps = {
   children: React.ReactNode;
-  isLoading: boolean;
-}
+  isProcessing: boolean;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const PaymentButton: React.FC<PaymentButtonProps> = ({
   children,
-  isLoading,
+  isProcessing,
   ...props
 }) => {
   return (
-    <button {...props} className={styles.button}>
-      {isLoading ? "Loading..." : children}
+    <button
+      {...props}
+      className={`${styles.button} ${isProcessing ? styles.processing : ""}`}
+    >
+      <span className={styles.mainText}>{children}</span>
+      <span className={styles.processingText}>
+        <img
+          src={LoaderUrl}
+          alt="Processing payment"
+          className={styles.spinner}
+        />
+        {"Processing payment"}
+      </span>
     </button>
   );
 };
