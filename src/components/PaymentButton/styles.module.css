@@ -9,10 +9,6 @@
   );
 }
 
-* {
-  font-family: Inter;
-}
-
 /* button */
 .button {
   height: 3rem;
@@ -27,7 +23,9 @@
   font-weight: 600;
   opacity: 1;
 }
-.button:hover {
+.button:hover,
+.button:focus {
+  outline: none;
   transform: translateY(-2px);
   background-color: hsl(
     var(--primary-hue),
