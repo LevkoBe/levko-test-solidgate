@@ -4,8 +4,11 @@ import ApplePayLogoUrl from "../../assets/ApplePayLogo.svg";
 import PaymentButton from "../PaymentButton/PaymentButton";
 import { useState } from "react";
 import Popup from "../Popup/Popup";
+import { useTranslation } from "react-i18next";
 
 const PaymentPage = () => {
+  const { t } = useTranslation();
+
   const [applePayProcessing, setApplePayProcessing] = useState(false);
   const [popup, setPopup] = useState<{
     message: string;
@@ -21,9 +24,7 @@ const PaymentPage = () => {
       const success = Math.random() > 0.5;
       setTimeout(() => {
         setPopup({
-          message: success
-            ? "Payment successful!"
-            : "Payment failed. Try again or use another card.",
+          message: success ? t("payment_successful") : t("payment_failed"),
           type: success ? "success" : "error",
         });
       }, 120);
@@ -35,12 +36,10 @@ const PaymentPage = () => {
       <div className={styles.paymentPageFirst}>
         <div className={styles.paymentActionContainer}>
           <div className={styles.paymentHeaders}>
-            <h1 className={styles.pageTitle}>Checkout</h1>
+            <h1 className={styles.pageTitle}>{t("checkout")}</h1>
             <div className={styles.priceInfo}>
-              <p className={styles.priceMain}>5 days free</p>
-              <p className={styles.priceSecondary}>
-                then 299.99 UAH per 14 days
-              </p>
+              <p className={styles.priceMain}>{t("trial_offer")}</p>
+              <p className={styles.priceSecondary}>{t("subscription_price")}</p>
             </div>
           </div>
           <PaymentButton
@@ -52,32 +51,33 @@ const PaymentPage = () => {
           </PaymentButton>
           <PaymentForm />
         </div>
+
         <p className={styles.legalInfo}>
-          You'll have your <strong>Plan Pro during 1 year</strong>. After this
-          period of time, your plan will be
-          <strong> automatically renewed </strong>
-          with its original price without any discounts applied.
+          {t("plan_description_1")}{" "}
+          <strong>{t("plan_description_strong_1")}</strong>.{" "}
+          {t("plan_description_2")}{" "}
+          <strong>{t("plan_description_strong_2")}</strong>{" "}
+          {t("plan_description_3")}
         </p>
       </div>
+
       <div className={styles.orderInfo}>
-        <h2 className={styles.orderTitle}>{"Order info <= 100 char."}</h2>
-        <p className={styles.orderDescription}>{"Description <= 400 char."}</p>
+        <h2 className={styles.orderTitle}>{t("order_info_limit")}</h2>
+        <p className={styles.orderDescription}>{t("description_limit")}</p>
 
         <hr className={styles.hr} />
 
         <div className={styles.item}>
-          <p className={styles.itemTitle}>
-            Lamel Professional Smart Skin Compact Powder
-          </p>
-          <p className={styles.itemSubtitle}>Пудра для лица</p>
+          <p className={styles.itemTitle}>{t("product_name")}</p>
+          <p className={styles.itemSubtitle}>{t("product_description")}</p>
         </div>
 
         <hr className={styles.hr} />
 
         <div className={styles.orderPrice}>
-          <p className={styles.orderPriceMain}>5 days free</p>
+          <p className={styles.orderPriceMain}>{t("trial_offer")}</p>
           <p className={styles.orderPriceSecondary}>
-            then 299.99 UAH per 14 days
+            {t("subscription_price")}
           </p>
         </div>
       </div>

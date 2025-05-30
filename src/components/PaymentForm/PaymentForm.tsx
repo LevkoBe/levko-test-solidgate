@@ -3,6 +3,7 @@ import PaymentButton from "../PaymentButton/PaymentButton";
 import styles from "./styles.module.css";
 import InfoUrl from "../../assets/Info.svg";
 import Popup from "../Popup/Popup";
+import { useTranslation } from "react-i18next";
 
 const useValidator = <T,>(validationFn: (newValue: T) => string) => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -15,30 +16,31 @@ const useValidator = <T,>(validationFn: (newValue: T) => string) => {
 };
 
 const PaymentForm = () => {
+  const { t } = useTranslation();
   const [cardNumber, setCardNumber] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [cvc, setCvc] = useState("");
-  const validators = {
-    cardNumber: useValidator<string>((val) =>
-      val.length === 16 + 3 ? "" : "Card number should have 16 digits"
-    ),
-    expirationDate: useValidator<string>((val) => {
-      const MMandYY = val.split("/").map((v) => parseInt(v, 10));
-      if (MMandYY.length !== 2) return "Expiration date should have 4 digits";
-      if (MMandYY[0] > 12 || MMandYY[0] < 1)
-        return "Month must be between 1 and 12";
-      if (MMandYY[1] < 25) return "Expiration date expired";
-      return "";
-    }),
-    cvc: useValidator<string>((val) =>
-      val.length === 3 ? "" : "CVC should have 3 digits"
-    ),
-  };
   const [isProcessing, setIsProcessing] = useState(false);
   const [popup, setPopup] = useState<{
     message: string;
     type: "success" | "error" | "info";
   } | null>(null);
+
+  const validators = {
+    cardNumber: useValidator<string>((val) =>
+      val.length === 16 + 3 ? "" : t("card_number_error")
+    ),
+    expirationDate: useValidator<string>((val) => {
+      const MMandYY = val.split("/").map((v) => parseInt(v, 10));
+      if (MMandYY.length !== 2) return t("expiration_format_error");
+      if (MMandYY[0] > 12 || MMandYY[0] < 1) return t("month_range_error");
+      if (MMandYY[1] < 25) return t("expiration_expired_error");
+      return "";
+    }),
+    cvc: useValidator<string>((val) =>
+      val.length === 3 ? "" : t("cvc_error")
+    ),
+  };
 
   const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formattedValue = e.target.value
@@ -78,7 +80,7 @@ const PaymentForm = () => {
       !cvc
     ) {
       setPopup({
-        message: "Please, enter valid data",
+        message: t("invalid_data_error"),
         type: "error",
       });
       return;
@@ -90,9 +92,7 @@ const PaymentForm = () => {
       const success = Math.random() > 0.5;
       setTimeout(() => {
         setPopup({
-          message: success
-            ? "Payment successful!"
-            : "Payment failed. Try again or use another card.",
+          message: success ? t("payment_success") : t("payment_failed"),
           type: success ? "success" : "error",
         });
       }, 120);
@@ -104,12 +104,12 @@ const PaymentForm = () => {
       <form className={styles.form}>
         <div className={styles.divider}>
           <hr className={styles.hr} />
-          <span className={styles.dividerText}>or pay with card</span>
+          <span className={styles.dividerText}>{t("pay_with_card")}</span>
           <hr className={styles.hr} />
         </div>
         <div className={styles.records}>
           <div className={styles.record}>
-            <label className={styles.label}>Card Number</label>
+            <label className={styles.label}>{t("card_number")}</label>
             <input
               type="text"
               onChange={handleCardNumberChange}
@@ -127,7 +127,7 @@ const PaymentForm = () => {
           </div>
           <div className={styles.row}>
             <div className={styles.record}>
-              <label className={styles.label}>Expiration Date</label>
+              <label className={styles.label}>{t("expiration_date")}</label>
               <input
                 type="text"
                 onChange={handleExpirationDateChange}
@@ -136,7 +136,7 @@ const PaymentForm = () => {
                     ? styles.invalid
                     : ""
                 }`}
-                placeholder="MM/YY"
+                placeholder={t("mm_yy")}
                 value={expirationDate}
               />
               {validators.expirationDate.getErrorMessage() && (
@@ -147,7 +147,7 @@ const PaymentForm = () => {
             </div>
 
             <div className={styles.record}>
-              <label className={styles.label}>CVC</label>
+              <label className={styles.label}>{t("cvc")}</label>
               <div className={styles.inputWithIcon}>
                 <input
                   type="password"
@@ -155,17 +155,16 @@ const PaymentForm = () => {
                   className={`${styles.input} ${
                     validators.cvc.getErrorMessage() ? styles.invalid : ""
                   }`}
-                  placeholder="•••"
+                  placeholder={t("cvc_placeholder")}
                   value={cvc}
                 />
                 <img
                   src={InfoUrl}
                   className={styles.infoIcon}
-                  alt="CVC info"
-                  title="3 digits found on the back of your card"
+                  alt={t("cvc_info_alt")}
+                  title={t("cvc_info_title")}
                 />
               </div>
-
               {validators.cvc.getErrorMessage() && (
                 <span className={styles.error}>
                   {validators.cvc.getErrorMessage()}
@@ -175,7 +174,7 @@ const PaymentForm = () => {
           </div>
         </div>
         <PaymentButton isProcessing={isProcessing} onClick={handleSubmit}>
-          {"Start Trial"}
+          {t("start_trial")}
         </PaymentButton>
       </form>
       {popup && (

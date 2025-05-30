@@ -1,6 +1,7 @@
 import styles from "./styles.module.css";
 import React from "react";
 import LoaderUrl from "../../assets/Loader.svg";
+import { useTranslation } from "react-i18next";
 
 type PaymentButtonProps = {
   children: React.ReactNode;
@@ -12,6 +13,8 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
   isProcessing,
   ...props
 }) => {
+  const { t } = useTranslation();
+
   return (
     <button
       {...props}
@@ -21,10 +24,10 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
       <span className={styles.processingText}>
         <img
           src={LoaderUrl}
-          alt="Processing payment"
+          alt={t("processing_payment")}
           className={styles.spinner}
         />
-        {"Processing payment"}
+        {t("processing_payment")}
       </span>
     </button>
   );

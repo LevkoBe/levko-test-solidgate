@@ -5,7 +5,7 @@ import ukrainianTranslation from "../locales/uk/translation.json";
 
 const resources = {
   en: { translation: englishTranslation },
-  ua: { translation: ukrainianTranslation },
+  uk: { translation: ukrainianTranslation },
 };
 
 i18next.use(initReactI18next).init({

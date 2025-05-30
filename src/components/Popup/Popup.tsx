@@ -11,7 +11,7 @@ const Popup = ({ message, type = "info", onClose }: PopupProps) => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(false), 1200);
+    const timer = setTimeout(() => setVisible(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
