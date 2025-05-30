@@ -1,0 +1,58 @@
+.langMobile {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  display: block;
+}
+.langDesktop {
+  display: none;
+}
+.langButton {
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--primary-text-color);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  transition: all 80ms ease;
+}
+.langButton:hover {
+  transform: translateY(-2px);
+}
+.langButton:active {
+  transform: translateY(2px);
+}
+
+@media (min-width: 900px) {
+  .langMobile {
+    display: none;
+  }
+  .langDesktop {
+    position: relative;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+  }
+  .langButton {
+    width: auto;
+    min-width: 40px;
+    padding: 6px 12px;
+    transition: all 0.2s ease;
+  }
+  .langButton.inactive {
+    color: var(--tertiary-text-color);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+}

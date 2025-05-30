@@ -1,10 +1,10 @@
 import "./App.css";
-import PaymentPage from "./components/PaymentPage/PaymentPage";
+import MainPage from "./components/MainPage/MainPage";
 
 function App() {
   return (
     <>
-      <PaymentPage />
+      <MainPage />
     </>
   );
 }
