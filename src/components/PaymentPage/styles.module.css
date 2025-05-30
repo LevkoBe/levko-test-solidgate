@@ -8,3 +8,81 @@
   width: 100vw;
   height: 100vh;
 }
+.paymentPageFirst {
+  display: flex;
+  flex-direction: column;
+  width: 420px;
+  gap: 8px;
+  padding: 1rem 1rem 2.5rem 1rem;
+}
+
+.paymentActionContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+  display: flex;
+}
+
+/* headers */
+.paymentHeaders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.paymentHeaders *,
+.dividerText {
+  color: var(--primary-text-color);
+}
+.priceInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pageTitle {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+}
+.priceMain {
+  text-align: center;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+}
+.priceSecondary {
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.legalInfo {
+  color: var(--secondary-text-color);
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--divider-color);
+  width: 100%;
+}
+strong {
+  font-weight: 600;
+}
+
+@media (max-width: 420px) {
+  .paymentPageFirst {
+    max-width: 100%;
+  }
+}

@@ -102,69 +102,76 @@ const PaymentForm = () => {
   return (
     <div className={styles.formContainer}>
       <form className={styles.form}>
-        <div className={styles.record}>
-          <label className={styles.label}>Card Number</label>
-          <input
-            type="text"
-            onChange={handleCardNumberChange}
-            className={`${styles.input} ${
-              validators.cardNumber.getErrorMessage() ? styles.invalid : ""
-            }`}
-            placeholder="1234 1234 1234 1234"
-            value={cardNumber}
-          />
-          {validators.cardNumber.getErrorMessage() && (
-            <span className={styles.error}>
-              {validators.cardNumber.getErrorMessage()}
-            </span>
-          )}
+        <div className={styles.divider}>
+          <hr />
+          <span className={styles.dividerText}>or pay with card</span>
+          <hr />
         </div>
-        <div className={styles.row}>
+        <div className={styles.records}>
           <div className={styles.record}>
-            <label className={styles.label}>Expiration Date</label>
+            <label className={styles.label}>Card Number</label>
             <input
               type="text"
-              onChange={handleExpirationDateChange}
+              onChange={handleCardNumberChange}
               className={`${styles.input} ${
-                validators.expirationDate.getErrorMessage()
-                  ? styles.invalid
-                  : ""
+                validators.cardNumber.getErrorMessage() ? styles.invalid : ""
               }`}
-              placeholder="MM/YY"
-              value={expirationDate}
+              placeholder="1234 1234 1234 1234"
+              value={cardNumber}
             />
-            {validators.expirationDate.getErrorMessage() && (
+            {validators.cardNumber.getErrorMessage() && (
               <span className={styles.error}>
-                {validators.expirationDate.getErrorMessage()}
+                {validators.cardNumber.getErrorMessage()}
               </span>
             )}
           </div>
-
-          <div className={styles.record}>
-            <label className={styles.label}>CVC</label>
-            <div className={styles.inputWithIcon}>
+          <div className={styles.row}>
+            <div className={styles.record}>
+              <label className={styles.label}>Expiration Date</label>
               <input
-                type="password"
-                onChange={handleCvcChange}
+                type="text"
+                onChange={handleExpirationDateChange}
                 className={`${styles.input} ${
-                  validators.cvc.getErrorMessage() ? styles.invalid : ""
+                  validators.expirationDate.getErrorMessage()
+                    ? styles.invalid
+                    : ""
                 }`}
-                placeholder="•••"
-                value={cvc}
+                placeholder="MM/YY"
+                value={expirationDate}
               />
-              <img
-                src={InfoUrl}
-                className={styles.infoIcon}
-                alt="CVC info"
-                title="3 digits found on the back of your card"
-              />
+              {validators.expirationDate.getErrorMessage() && (
+                <span className={styles.error}>
+                  {validators.expirationDate.getErrorMessage()}
+                </span>
+              )}
             </div>
 
-            {validators.cvc.getErrorMessage() && (
-              <span className={styles.error}>
-                {validators.cvc.getErrorMessage()}
-              </span>
-            )}
+            <div className={styles.record}>
+              <label className={styles.label}>CVC</label>
+              <div className={styles.inputWithIcon}>
+                <input
+                  type="password"
+                  onChange={handleCvcChange}
+                  className={`${styles.input} ${
+                    validators.cvc.getErrorMessage() ? styles.invalid : ""
+                  }`}
+                  placeholder="•••"
+                  value={cvc}
+                />
+                <img
+                  src={InfoUrl}
+                  className={styles.infoIcon}
+                  alt="CVC info"
+                  title="3 digits found on the back of your card"
+                />
+              </div>
+
+              {validators.cvc.getErrorMessage() && (
+                <span className={styles.error}>
+                  {validators.cvc.getErrorMessage()}
+                </span>
+              )}
+            </div>
           </div>
         </div>
         <PaymentButton isProcessing={isProcessing} onClick={handleSubmit}>

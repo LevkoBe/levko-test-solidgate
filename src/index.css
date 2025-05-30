@@ -4,3 +4,16 @@
   margin: 0;
   padding: 0;
 }
+
+:root {
+  --primary-text-color: #363a43;
+  --secondary-text-color: #666c7b;
+  --tertiary-text-color: #b0b4be;
+  --other-text-color: #797e8b;
+
+  --default-textfield-color: #c7c9d1;
+  --divider-color: #e4e6ec;
+  --error-color: #e43;
+  --success-color: #028837;
+  --info-color: #29f;
+}

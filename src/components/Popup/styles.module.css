@@ -16,13 +16,13 @@
 }
 
 .success {
-  background-color: #5b5;
+  background-color: var(--success-color);
 }
 .error {
-  background-color: #e43;
+  background-color: var(--error-color);
 }
 .info {
-  background-color: #29f;
+  background-color: var(--info-color);
 }
 
 .close {
