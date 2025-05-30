@@ -92,7 +92,7 @@ const PaymentForm = () => {
       const success = Math.random() > 0.5;
       setTimeout(() => {
         setPopup({
-          message: success ? t("payment_success") : t("payment_failed"),
+          message: success ? t("payment_successful") : t("payment_failed"),
           type: success ? "success" : "error",
         });
       }, 120);
