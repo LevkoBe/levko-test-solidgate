@@ -48,7 +48,7 @@ const PaymentPage = () => {
             onClick={handleApplePayClick}
             style={{ backgroundColor: "#000", borderRadius: "3px" }}
           >
-            <img src={ApplePayLogoUrl} alt="Apple Pay" title="Apple Pay" />
+            <img src={ApplePayLogoUrl} alt="Apple Pay" />
           </PaymentButton>
           <PaymentForm />
         </div>
