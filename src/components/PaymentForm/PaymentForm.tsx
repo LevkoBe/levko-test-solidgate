@@ -103,9 +103,9 @@ const PaymentForm = () => {
     <div className={styles.formContainer}>
       <form className={styles.form}>
         <div className={styles.divider}>
-          <hr />
+          <hr className={styles.hr} />
           <span className={styles.dividerText}>or pay with card</span>
-          <hr />
+          <hr className={styles.hr} />
         </div>
         <div className={styles.records}>
           <div className={styles.record}>

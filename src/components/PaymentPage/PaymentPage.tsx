@@ -59,6 +59,29 @@ const PaymentPage = () => {
           with its original price without any discounts applied.
         </p>
       </div>
+      <div className={styles.orderInfo}>
+        <h2 className={styles.orderTitle}>{"Order info <= 100 char."}</h2>
+        <p className={styles.orderDescription}>{"Description <= 400 char."}</p>
+
+        <hr className={styles.hr} />
+
+        <div className={styles.item}>
+          <p className={styles.itemTitle}>
+            Lamel Professional Smart Skin Compact Powder
+          </p>
+          <p className={styles.itemSubtitle}>Пудра для лица</p>
+        </div>
+
+        <hr className={styles.hr} />
+
+        <div className={styles.orderPrice}>
+          <p className={styles.orderPriceMain}>5 days free</p>
+          <p className={styles.orderPriceSecondary}>
+            then 299.99 UAH per 14 days
+          </p>
+        </div>
+      </div>
+
       {popup && (
         <Popup
           message={popup.message}
